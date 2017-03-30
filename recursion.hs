@@ -5,12 +5,12 @@ sum' (x:xs) = x + sum' xs
 maximum' :: (Ord a) => [a] -> a
 maximum' [] = error "Empty list"
 maximum' [a] = a
-maximum' (x:xs) = max x (maximum' xs)
+maximum' (x:xs) = max x $ maximum' xs
 
 replicate' :: (Num a, Ord a) => a -> b -> [b]
 replicate' n x
   | n <= 0 = []
-  | otherwise = x : replicate' (n - 1) x
+  | otherwise = x : replicate' (n-1) x
 
 take' :: (Num a, Ord a) => a -> [b] -> [b]
 take' _ [] = []
@@ -64,3 +64,6 @@ filter' _ [] = []
 filter' p (x:xs)
   | p x       = x : filter' p xs
   | otherwise = filter' p xs
+
+iterate' :: (a -> a) -> a -> [a]
+iterate' f a = a : (iterate' f $ f a)
