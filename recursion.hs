@@ -1,3 +1,7 @@
+sum' :: (Num a) => [a] -> a
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
+
 maximum' :: (Ord a) => [a] -> a
 maximum' [] = error "Empty list"
 maximum' [a] = a
