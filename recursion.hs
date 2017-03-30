@@ -12,7 +12,13 @@ take' :: (Num a, Ord a) => a -> [b] -> [b]
 take' _ [] = []
 take' n (x:xs)
   | n <= 0    = []
-  | otherwise = x: take' (n-1) xs
+  | otherwise = x : take' (n-1) xs
+
+takeWhile' :: (a -> Bool) -> [a] -> [a]
+takeWhile' _ [] = []
+takeWhile' p (x:xs)
+  | p x       = x : takeWhile' p xs
+  | otherwise = []
 
 reverse' :: [a] -> [a]
 reverse' [] = []
@@ -52,5 +58,5 @@ map' f (x:xs) = f x : map' f xs
 filter' :: (a -> Bool) -> [a] -> [a]
 filter' _ [] = []
 filter' p (x:xs)
-  | f x       = x : filter' p xs
+  | p x       = x : filter' p xs
   | otherwise = filter' p xs
