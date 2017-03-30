@@ -1,17 +1,3 @@
-max' :: (Ord a) => a -> a -> a
-max' a b
-  | b > a = b
-  | otherwise = a
-
-compare' :: (Ord a) => a -> a -> Ordering
-compare' a b
-  | a > b = GT
-  | a < b = LT
-  | a == b = EQ
-
-initials :: String -> String -> String
-initials (al:_) (bl:_) = [al,bl]
-
 maximum' :: (Ord a) => [a] -> a
 maximum' [] = error "Empty list"
 maximum' [a] = a
@@ -46,3 +32,10 @@ elem' _ [] = False
 elem' e (x:xs)
   | e == x = True
   | otherwise =  elem' e xs
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+  quicksort smaller ++ [x] ++ quicksort bigger
+  where smaller = [a | a <- xs, a <= x]
+        bigger = [b | b <- xs, b > x]
